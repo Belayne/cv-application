@@ -1,0 +1,25 @@
+
+.personal {
+    width: 100%;
+}
+
+.personal header {
+    display: flex;
+    gap: 10px;
+}
+
+.personal h2 {
+    color: gray;
+    padding: 0;
+    margin: 0;
+}
+
+header button {
+    margin-left: auto;
+}
+
+.infoList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

@@ -5,3 +5,23 @@
   text-align: center;
 }
 
+.btn-primary {
+  width: 100px;
+    height: 50px;
+    border: unset;
+    border-radius: 5px;
+    background-color: #2DAB66;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
