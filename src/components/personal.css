@@ -19,7 +19,9 @@ header button {
 }
 
 .infoList {
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 20px;
 }

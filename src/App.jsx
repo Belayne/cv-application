@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import PersonalSection from './components/PersonalSection'
 import Curriculum from './components/Curriculum'
+import WorkSection from './components/WorkSection'
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
         <button className='btn-primary' onClick={print}>PRINT</button>
       </header>
      <Curriculum>
-      <PersonalSection />
+      <PersonalSection/>
+      <WorkSection />
      </Curriculum>
     </>
   )

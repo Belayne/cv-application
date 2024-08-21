@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  width: 1000px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -23,5 +23,11 @@ header {
 
 button:hover {
   cursor: pointer;
+}
+
+@media print {
+  button, h1 {
+    display: none;
+  }
 }
 

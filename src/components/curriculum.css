@@ -1,5 +1,16 @@
 .curriculum {
-    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: min(100%, 900px);
     border: 1px solid black;
     padding: 20px;
+    margin: auto;
+}
+
+@media print {
+    .curriculum {
+        border: unset;
+        width: 842px;
+    }
 }

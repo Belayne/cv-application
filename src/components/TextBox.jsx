@@ -1,18 +1,13 @@
 import "./textBox.css"
 import { useState } from "react"
 
-function TextBox({label, type, id, editing}) {
-    const [value, setValue] = useState("");
+function TextBox({label, type, id, editing, value, onChange}) {
 
-    function handleChange(e) {
-        setValue(e.target.value);
-    }
-    
     if(editing) {
         return (
             <div className="textbox">
                 <label htmlFor={id}>{label}</label>
-                <input type={type} id={id} value={value} onChange={handleChange}/>
+                <input type={type} id={id} onChange={onChange} value={value} />
             </div>
         )
     }
