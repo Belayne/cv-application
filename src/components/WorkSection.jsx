@@ -31,13 +31,13 @@ const jobElements = [
     }
 ]
 
-const initialJobState = [jobElements.reduce((acc, curr) => {
+const initialJobState = (id) => [jobElements.reduce((acc, curr) => {
     acc[curr.id + "-0"] = "";
     return acc;
-}, {id: 0})];
+}, {id: id})];
 console.log(initialJobState)
 
-function Job({editing, jobs, handleChange}) {
+function Job({editing, jobs, handleChange, removeJob}) {
 
     return (
         <>
@@ -47,6 +47,7 @@ function Job({editing, jobs, handleChange}) {
                     return <TextBox key={element.id + "-" + job.id + "key"} id={element.id + "-" + job.id} label={element.label} type={element.type} editing={editing} onChange ={e => {handleChange(e, job.id)}} value = {job[element.id+ "-" + job.id]}/>
                 }
                 )}
+                {editing && <button className="btn-primary btn-delete" onClick={() => removeJob(job.id)}>Delete</button>}
             </div>
         )}
         </>
@@ -55,15 +56,11 @@ function Job({editing, jobs, handleChange}) {
 
 export default function WorkSection() {
     const [editing, setEditing] = useState(true);
-    const [jobs, setJobs] = useState(initialJobState)
-
-    //console.log(jobs);
+    const [jobs, setJobs] = useState(initialJobState(0))
 
     function handleClick() {
         setEditing(!editing);
     }
-
-    //console.log(jobs)
 
     function handleChange(e, id) {
         const changedKey = e.target.id;
@@ -78,6 +75,15 @@ export default function WorkSection() {
         setJobs(newJobs);
     }
 
+    function addJob() {
+        const newId = jobs.length > 0? jobs[jobs.length - 1].id + 1: 0;
+        setJobs(jobs.concat(initialJobState(newId)));
+    }
+
+    function removeJob(id) {
+        setJobs(jobs.filter(job => job.id != id));
+    }
+
     return (
         <section className="work">
             <header>
@@ -85,8 +91,8 @@ export default function WorkSection() {
                 <EditButton onClick={handleClick} editing={editing}/>
             </header>
             <hr />
-            <Job editing = {editing} jobs = {jobs} handleChange={handleChange}/>
-            {editing && <button className="btn-primary">Add job</button>}
+            <Job editing = {editing} jobs = {jobs} handleChange={handleChange} removeJob={removeJob}/>
+            {editing && <button className="btn-primary" onClick={addJob}>Add job</button>}
         </section>
     )
 }
