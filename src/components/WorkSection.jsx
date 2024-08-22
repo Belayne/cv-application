@@ -7,27 +7,32 @@ const jobElements = [
     {
         label: "Company Name",
         type: "text",
-        id: "company"
+        id: "company",
+        class: "company"
     },
     {
         label: "Position Title",
         type: "text",
-        id: "posTitle"
+        id: "posTitle",
+        class: "position"
     },
     {
         label: "Start Date",
         type: "date",
-        id: "startDate"
+        id: "startDate",
+        class: "startdate"
     },
     {
         label: "End Date",
         type: "date",
-        id: "endDate"
+        id: "endDate",
+        class: "enddate"
     },
     {
         label: "Location",
         type: "text",
-        id: "jobLocation"
+        id: "jobLocation",
+        class: "location"
     }
 ]
 
@@ -37,20 +42,21 @@ const initialJobState = (id) => [jobElements.reduce((acc, curr) => {
 }, {id: id})];
 console.log(initialJobState)
 
-function Job({editing, jobs, handleChange, removeJob}) {
+function Jobs({editing, jobs, handleChange, removeJob}) {
 
     return (
-        <>
+        <div className="jobList">
         {jobs.map(job => 
             <div className="job" key={job.id}>
                 {jobElements.map(element => {
-                    return <TextBox key={element.id + "-" + job.id + "key"} id={element.id + "-" + job.id} label={element.label} type={element.type} editing={editing} onChange ={e => {handleChange(e, job.id)}} value = {job[element.id+ "-" + job.id]}/>
+                    return <TextBox key={element.id + "-" + job.id + "key"} id={element.id + "-" + job.id} label={element.label} type={element.type} editing={editing} onChange ={e => {handleChange(e, job.id)}} value = {job[element.id+ "-" + job.id]} className = {element.class}/>
                 }
                 )}
                 {editing && <button className="btn-primary btn-delete" onClick={() => removeJob(job.id)}>Delete</button>}
+                {!editing && <hr />}
             </div>
         )}
-        </>
+        </div>
     )
 }
 
@@ -60,6 +66,10 @@ export default function WorkSection() {
 
     function handleClick() {
         setEditing(!editing);
+        setJobs(jobs.map(job => {
+            job[`endDate-${job.id}`] = (job[`startDate-${job.id}`] && !job[`endDate-${job.id}`])? "present": "";
+            return job
+        }))
     }
 
     function handleChange(e, id) {
@@ -91,7 +101,7 @@ export default function WorkSection() {
                 <EditButton onClick={handleClick} editing={editing}/>
             </header>
             <hr />
-            <Job editing = {editing} jobs = {jobs} handleChange={handleChange} removeJob={removeJob}/>
+            <Jobs editing = {editing} jobs = {jobs} handleChange={handleChange} removeJob={removeJob}/>
             {editing && <button className="btn-primary" onClick={addJob}>Add job</button>}
         </section>
     )

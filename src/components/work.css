@@ -1,0 +1,44 @@
+.jobList {
+    display: flex;
+    flex-direction: column;
+}
+
+.job {
+    display: grid;
+    grid-template-areas: 
+        "name position btn"
+        "start end end"
+        "location . ."
+        "line line line";
+    gap: 20px;
+}
+
+.job hr {
+    grid-area: line;
+    width: 100%
+}
+
+.position{
+    grid-area: position;
+}
+
+.startdate{
+    grid-area: start
+}
+
+.enddate{
+    grid-area: end
+}
+
+.btn-delete {
+    grid-area: btn;
+}
+
+
+.location {
+    grid-area: location;
+}
+
+.job .notEditing .labelText {
+    display: none;
+}

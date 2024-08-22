@@ -3,6 +3,7 @@ import './App.css'
 import PersonalSection from './components/PersonalSection'
 import Curriculum from './components/Curriculum'
 import WorkSection from './components/WorkSection'
+import EduSection from '../EduSection'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
      <Curriculum>
       <PersonalSection/>
       <WorkSection />
+      <EduSection />
      </Curriculum>
     </>
   )
